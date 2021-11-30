@@ -1,0 +1,82 @@
+<div class="container-fluid py-5" id="fondo">
+    <div class="row text-center">
+        <div class="col-md-3" *ngIf="jugador !== undefined">
+            <h2 id="jugadores" >{{jugador.nombre}}</h2>
+            <button [disabled]="!juegoEmpezado" (click)="punto('jugador')" class="o-button" tyh2e="button">
+                Puntos
+            </button>
+            <h2>Puntos: {{jugadorPrincipal}}</h2>
+            <img *ngIf="jugador.genero == 'Masculino'" id="jugador" src="../../../assets/recursos/niño.png" style="width: 170px;" alt="jugador-Hombre">
+            <img *ngIf="jugador.genero == 'Femenino'" id="jugador" src="../../../assets/recursos/niña2.png" style="width: 170px;" alt="jugador-Mujer">
+        </div>
+        <div class="col-md-6">
+            <div class="row justify-content-center align-items-center" id="main">
+                <div class="col-1 mx-3 d-flex align-items-center justify-content-center" id="cuadrados" *ngFor="let item of array">
+                    <div id="punto" *ngIf="item == 1">
+                    </div>
+                </div>
+            </div>
+            <button *ngIf="juegoEmpezado == false" type="button" class="o-button" (click)="comenzarJuego()">Empezamos!</button>
+            <button *ngIf="juegoEmpezado == true" class="o-button" (click)="comenzarJuego()">Siguiente turno</button>
+        </div>
+        <div class="col-md-3">
+            <div class="row rows-col-3">
+                <div class="d-flex justify-content-center ">
+                    <button *ngIf="!contrincanteNombre" class="d-flex my-2 btn btn-outline-dark " (click)="abrirModal(amigos)">
+                        Agregar contrincante +
+                    </button>
+                </div>
+            </div>
+            
+            <div *ngIf="contrincanteNombre">
+                <h2 id="jugadores" >
+                    {{contrincanteNombre.nombre}}
+                </h2>
+                <button type="button" [disabled]="!juegoEmpezado" (click)="punto('contrincante')" class="o-button" tyh2e="button">
+                    Puntos
+                </button>
+                <h2>Puntos: {{contrincante}}</h2>
+                <img *ngIf="contrincanteNombre.genero === 'Femenino'" src="../../../assets/recursos/niña2.png" style="width: 200px;" alt="contrincante">
+                <img *ngIf="contrincanteNombre.genero  === 'Masculino'" src="../../../assets/recursos/niño.png" style="width: 200px;" alt="contrincante">
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #amigos let-modal>
+    <app-listacontactos></app-listacontactos>
+</ng-template>
+
+<ng-template #juego let-modal>
+    <app-modal-game
+     *ngIf="turno == 1 && jugador !==undefined && pregunta !== undefined"
+      [jugador]="jugador.nombre" [pregunta]="pregunta" [ejercicio]="ejercico"></app-modal-game>
+
+    <app-modal-game *ngIf="turno == 0 && contrincanteNombre !==undefined"
+     [jugador]="contrincanteNombre.nombre" 
+     [pregunta]="pregunta"
+     [ejercicio]="ejercico"
+     ></app-modal-game>
+</ng-template>
+
+<ng-template #presentacion let-modal>
+    <app-presentation></app-presentation>
+</ng-template>  
+
+<ng-template #errorMod let-modal>
+  <div class="modal-header justify-content-center" style="border-bottom: none!important;">
+    <h2  class="modal-title titulo" id="exampleModalLabel">Oops, ha ocurrido algo!</h2>
+  </div>
+  <div class="modal-body text-center">
+      <p id="texto" class="text-danger">Tienes que escoger a un amigo </p>
+  </div>
+  <div class="modal-footer justify-content-center" style="border-top: none!important;">
+      <button routerLink="[/]"  id="texto" type="button" class="btn btn-primary" (click)="cerrar()">Entendido!</button>
+  </div>
+</ng-template>
+
+
+<ng-template #winner let-modal>
+    <app-winner [ganador]="ganador" [puntos]="puntosGanador"></app-winner>
+</ng-template>   
+

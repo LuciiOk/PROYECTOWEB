@@ -1,0 +1,61 @@
+$textcolor: #01255b;
+$titulo: #FFA502;
+$texto: Airbnb Cereal App Medium;
+
+p {
+  font-family: $texto;
+  color: $textcolor;
+  font-size: 17px;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+label {
+  font-family: $texto;
+  font-size: 20px;
+  color: $textcolor;
+}
+
+#cerrar {
+  background-color: transparent;
+  border: none;
+  color: $textcolor;
+  font-size: 30px;
+}
+
+.btn {
+  font-family: $texto;
+  font-size: 20px;
+}
+
+input, select {
+  border: $textcolor 4px solid;
+  border-radius: none;
+  font-family: $texto;
+}
+
+#img-footer2 {
+  width: 300px;
+
+}
+
+#img-footer1 {
+  width: 100px;
+  
+}
+
+.titulo {
+  font-family: MADE Sunflower;
+  color: $titulo;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media (max-width:650px) {
+  #img-footer1, #img-footer2 {
+    display: none;
+  }
+}
