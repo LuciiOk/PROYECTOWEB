@@ -1,3 +1,5 @@
+--CREATE DATABASE triviasano;
+
 drop table if exists informacionesmedicas cascade;
 create table informacionesmedicas (
 	id serial primary key,
